@@ -69,7 +69,15 @@ const Checkmark = styled.span<{ color: string }>`
   transition: opacity 0.3s ease;
 
   /* color of the circle outside */
-  border: var(--border) solid gold;
+  border: var(--border) solid black;
+  ${({ color }) =>
+    color
+      ? css`
+          border: var(--border) solid ${color};
+        `
+      : css`
+          border: var(--border) solid black;
+        `}
 
   padding: var(--gap);
   position: absolute;
