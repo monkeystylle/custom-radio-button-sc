@@ -15,9 +15,10 @@ const Home: NextPage = () => {
     <>
       <Main>
         <Container>
-          <CustomRadio value={value} onClick={handleChange} />
+          <CustomRadio value={value} onClick={handleChange} color="tomato" />
           <h6>CAT PERSON</h6>
         </Container>
+        <h1>{value.toString()}</h1>
       </Main>
     </>
   );

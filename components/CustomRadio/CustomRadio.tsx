@@ -1,26 +1,28 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 type Props = {
   value: boolean;
   onClick: () => void;
+  size?: string;
   color?: any;
 };
 
-const CustomRadio = ({ value, onClick, color }: Props) => {
+const CustomRadio = ({ value, onClick, color, size }: Props) => {
   return (
     <>
-      <CustomRadioButton>
+      <CustomRadioButton size={size}>
         <Input type="radio" checked={value} onClick={onClick} />
-        <Checkmark />
+        <Checkmark color={color} />
       </CustomRadioButton>
     </>
   );
 };
 
-const CustomRadioButton = styled.label`
+const CustomRadioButton = styled.label<{ size: string }>`
   /* change size of the radio button */
   --size: 25px;
+  --size: ${props => (props.size ? props.size : '25px')};
   min-width: var(--size);
   height: var(--size);
   border-radius: 50%;
@@ -55,20 +57,20 @@ const Input = styled.input`
   }
 `;
 
-const Checkmark = styled.span`
+const Checkmark = styled.span<{ color: string }>`
   --gap: 3px;
   --border: 2px;
   /* color of the circle inside */
-  --check-color: gold;
+  --check-color: ${props => (props.color ? props.color : 'black')};
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
   display: inline-block;
   transition: opacity 0.3s ease;
-  /* changes   */
 
   /* color of the circle outside */
   border: var(--border) solid gold;
+
   padding: var(--gap);
   position: absolute;
   top: 0;
